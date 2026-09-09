@@ -15,6 +15,8 @@ def index():
 def Browse(filepath=""):
 
     current_path = (CONTENT_DIR / filepath).resolve()
+    if any(part.startswith(".") for part in current_path.relative_to(CONTENT_DIR).parts):
+       abort(404)
 
     if CONTENT_DIR not in current_path.parents and current_path != CONTENT_DIR:
         abort(404)
@@ -41,6 +43,9 @@ def Browse(filepath=""):
         items = []
 
         for item in sorted(current_path.iterdir()):
+
+            if item.name.startswith("."):
+                continue
 
             if item.is_dir():
                 items.append({
