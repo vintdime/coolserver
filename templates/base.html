@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF8">
-    <meta name="viewport" content="width=device-width, initial scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
     {% block head %}{% endblock %}
 </head>
+
 <body>
-    {% block body %}{% endblock %}
+
+<div class="topnav">
+  <a class="{% if request.path == '/' %}active{% endif %}" href="/">Домой</a>
+  <a class="{% if request.path == '/Browse' %}active{% endif %}" href="/Browse">Файлы</a>
+  <a class="" href="#" onclick="openContact(); return false;">Контакты</a>
+  <a class="{% if request.path == '/about' %}active{% endif %}" href="/about">Полезное</a>
+</div>
+
+<div id="contactPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closeContact()">&times;</span>
+
+        <h2>Можете написать мне здесь:</h2>
+
+        <p>
+            Telegram:
+            <a href="https://t.me/onedayyouwillcry" target="_blank">
+                @onedayyouwillcry
+            </a>
+        </p>
+    </div>
+</div>
+
+<script>
+function openContact() {
+    document.getElementById("contactPopup").style.display = "block";
+}
+
+function closeContact() {
+    document.getElementById("contactPopup").style.display = "none";
+}
+</script>
+
+{% block body %}{% endblock %}
+
 </body>
 </html>

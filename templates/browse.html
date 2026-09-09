@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<main class="browse-container">
+
+    <h1>Browse</h1>
+
+    {% if current_path %}
+        <a class="back-button"
+           href="{{ url_for(
+               'Browse',
+               filepath=current_path.rsplit('/', 1)[0]
+           ) if '/' in current_path else url_for('Browse') }}">
+            ← Back
+        </a>
+    {% endif %}
+
+    <div class="note-grid">
+
+        {% for item in items %}
+
+            {% if item.type == "folder" %}
+
+                <a class="sticky-note folder-note"
+                   href="{{ url_for(
+                       'Browse',
+                       filepath=(current_path + '/' if current_path else '') + item.name
+                   ) }}">
+
+                    <div class="note-pin"></div>
+                    <div class="note-icon">📁</div>
+                    <div class="note-title">{{ item.name }}</div>
+                    <div class="note-subtitle">folder</div>
+
+                </a>
+
+            {% else %}
+
+                <a class="sticky-note"
+                   href="{{ url_for(
+                       'Browse',
+                       filepath=(current_path + '/' if current_path else '') + item.name + '.md'
+                   ) }}">
+
+                    <div class="note-pin"></div>
+                    <div class="note-icon">✎</div>
+                    <div class="note-title">{{ item.name }}</div>
+                    <div class="note-subtitle">note</div>
+
+                </a>
+
+            {% endif %}
+
+        {% else %}
+
+            <p class="empty">Пока здесь пусто.</p>
+
+        {% endfor %}
+
+    </div>
+
+</main>
+
+{% endblock %}
