@@ -78,9 +78,7 @@
 }
 body {
   background-color: #05272a;
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
 .note-grid {
     display: grid;
