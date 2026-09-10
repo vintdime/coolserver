@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, abort    
 from pathlib import Path
 import markdown
 
@@ -9,6 +9,10 @@ CONTENT_DIR = Path(__file__).parent / "content"
 @app.route("/")
 def index():
     return render_template('index.html')
+
+@app.route("/about")
+def about():
+    return render_template('about.html')
 
 @app.route("/Browse/")
 @app.route("/Browse/<path:filepath>")
@@ -64,7 +68,6 @@ def Browse(filepath=""):
             items=items,
             current_path=filepath
         )
-
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000)

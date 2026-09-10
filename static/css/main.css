@@ -78,6 +78,19 @@
 }
 body {
   background-color: #05272a;
+  display: : flex;
+  justify-content: center;
+  align items: center;
+}
+.note-grid {
+    display: grid;
+    /* your existing grid properties */
+}
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    width: 100%;
 }
 
 h1 {
