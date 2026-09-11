@@ -206,3 +206,7 @@ text-align: center;
   text-align: center;
   color: #e7e09f;
 }
+h2 {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
