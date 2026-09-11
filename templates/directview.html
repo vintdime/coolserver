@@ -1,0 +1,17 @@
+```html
+{% extends "base.html" %}
+
+{% block body %}
+
+<main class="excalidraw-page">
+
+    <h1>{{ title }}</h1>
+
+    <div class="excalidraw-container">
+        {{ content|safe }}
+    </div>
+
+</main>
+
+{% endblock %}
+```
