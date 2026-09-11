@@ -223,3 +223,16 @@ td {
     color: white;
     font-family: 'Courier New', Courier, monospace;
 }
+.excalidraw-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    overflow: hidden;
+}
+
+.excalidraw-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
