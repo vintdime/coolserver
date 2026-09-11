@@ -82,6 +82,7 @@
 }
 body {
   background-color: #05272a;
+  color: white;
   justify-content: center;
   font-family:'Courier New', Courier, monospace;
 }
@@ -207,6 +208,18 @@ text-align: center;
   color: #e7e09f;
 }
 h2 {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+h3 {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+h4 {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+td {
     color: white;
     font-family: 'Courier New', Courier, monospace;
 }
