@@ -158,8 +158,6 @@ def Browse(filepath=""):
                 })
 
             elif item.is_file():
-
-                # Don't expose the .md extension of Excalidraw files
                 if item.name.endswith(".excalidraw.md"):
                     items.append({
                         "name": item.name.removesuffix(".md"),
