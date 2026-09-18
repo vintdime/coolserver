@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort, send_file
 from pathlib import Path
 import markdown
 import re
@@ -18,6 +18,14 @@ def find_content_file(filename):
         return matches[0]
 
     matches = list(CONTENT_DIR.rglob(filename + ".md"))
+    return matches[0] if matches else None
+
+
+def find_photos_dir():
+    matches = [
+        path for path in CONTENT_DIR.rglob("photos")
+        if path.is_dir()
+    ]
 
     return matches[0] if matches else None
 
@@ -62,7 +70,6 @@ def process_excalidraw(text):
 
     def replace(match):
         filename = match.group(1)
-
         file_path = find_content_file(filename)
 
         if file_path is None:
@@ -70,7 +77,6 @@ def process_excalidraw(text):
 
         try:
             svg = render_excalidraw(file_path)
-
             return f'<div class="excalidraw-container">{svg}</div>'
 
         except Exception as e:
@@ -110,7 +116,6 @@ def Browse(filepath=""):
         # Excalidraw files should be rendered by the Excalidraw renderer
         if current_path.name.endswith(".excalidraw.md"):
             svg = render_excalidraw(current_path)
-
             title = current_path.name.removesuffix(".excalidraw.md")
 
             return render_template(
@@ -124,7 +129,6 @@ def Browse(filepath=""):
             abort(404)
 
         markdown_text = current_path.read_text(encoding="utf-8")
-
         markdown_text = process_excalidraw(markdown_text)
 
         html = markdown.markdown(
@@ -143,11 +147,9 @@ def Browse(filepath=""):
 
     # Directory
     if current_path.is_dir():
-
         items = []
 
         for item in sorted(current_path.iterdir()):
-
             if item.name.startswith("."):
                 continue
 
